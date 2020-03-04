@@ -23,4 +23,5 @@ Create a project trigger to create the custom menu when the sheet is opened
 
 
 Accelo API reference: https://api.accelo.com/docs
+
 Google Apps Script reference: https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app
