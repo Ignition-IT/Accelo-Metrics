@@ -4,13 +4,17 @@ var scriptProps = PropertiesService.getScriptProperties();
 //get an access token and store it in PropertyServices
 //run this manually or scheduled on a trigger
 function getAccessToken() {
-  var clientCredentials = Utilities.base64Encode("ACCELO_CLIENT_ID" + ":" + "ACCELO_CLIENT_SECRET")
+  //get client ID and secret from Script Properties
+  var clientId = scriptProps.getProperty("acceloClientId");
+  var clientSecret = scriptProps.getProperty("acceloClientSecret");
+  
+  var clientCredentials = Utilities.base64Encode(clientId + ":" + clientSecret);
   var headers = {
     "Authorization": "Basic " + clientCredentials,
     "Content-Type": "application/x-www-form-urlencoded"
-  }
+  };
   
-  var body = "grant_type=client_credentials"
+  var body = "grant_type=client_credentials";
   
   var params = {
     "method": "post",
@@ -27,8 +31,8 @@ function getAccessToken() {
   var accessToken = data.access_token;
   
   //push access token to Script Properties
-  scriptProps.setProperty("accessToken", accessToken)
-};
+  scriptProps.setProperty("accessToken", accessToken);
+}
 
 //count tickets opened or closed in a given timeframe
 //status options are "opened", "closed"
@@ -38,7 +42,7 @@ function countTickets(status, startDate, endDate) {
 
   var headers = {
     "Authorization": "Bearer " + accessToken,
-  }
+  };
   
   var params = {
     "method": "get",
@@ -53,4 +57,4 @@ function countTickets(status, startDate, endDate) {
   //convert string to integer
   var count = parseInt(data.response.count);
   return count;
-};
+}

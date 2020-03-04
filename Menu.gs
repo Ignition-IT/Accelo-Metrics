@@ -20,4 +20,4 @@ function createMenu() {
   .addItem('Custom Range', 'getCustomRange')
   //push to the UI
   .addToUi();
-};
+}

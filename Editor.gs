@@ -58,5 +58,4 @@ function getTicketVolume(startDate, endDate, type) {
     //add 1 to the row to which the next set of data will be pushed
     startRow ++;
   };
-  
-}
+};
