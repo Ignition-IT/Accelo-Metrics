@@ -22,9 +22,11 @@ function getAccessToken() {
     "headers": headers
   };
   
+  //get Accelo instance name from Script Properties
+  var instance = scriptProps.getProperty("acceloInstance");
+  
   //POST credentials to oauth2 endpoint
-  //replace INSTANCE with your Accelo instance
-  var response = UrlFetchApp.fetch("https://INSTANCE.api.accelo.com/oauth2/v0/token", params);  
+  var response = UrlFetchApp.fetch("https://" + instance + ".api.accelo.com/oauth2/v0/token", params);  
   var text = response.getContentText();
   var data = JSON.parse(text);
   //this is your access token
@@ -49,9 +51,11 @@ function countTickets(status, startDate, endDate) {
     "headers": headers
   };
   
+  var instance = scriptProps.getProperty("acceloInstance");
+  
   //make a GET request to the Count Issues endpoint
   //filter by Date Opened or Date Closed
-  var response = UrlFetchApp.fetch("https://INSTANCE.api.accelo.com/api/v0/issues/count?_filters=date_" + status + "_after(" + startDate + "),date_" + status + "_before(" + endDate + ")", params);
+  var response = UrlFetchApp.fetch("https://" + instance + ".api.accelo.com/api/v0/issues/count?_filters=date_" + status + "_after(" + startDate + "),date_" + status + "_before(" + endDate + ")", params);
   var text = response.getContentText();
   var data = JSON.parse(text);
   //convert string to integer
