@@ -8,7 +8,7 @@ function getTicketVolume(startDate, endDate, type) {
   var lastCol = sheet.getLastColumn();
   //clear the selected range
   try {
-    var range = sheet.getRange(2, 3, lastRow - 1, lastCol - 2);
+    var range = sheet.getRange(2, 1, lastRow - 1, lastCol);
     range.clear()
   }
   //continue on error, e.g. there's no data currently in the range
@@ -49,7 +49,7 @@ function getTicketVolume(startDate, endDate, type) {
     //create an object with the data to be pushed to the sheet
     var row = [[dayName, month + "/" + day + "/" + year, openedTickets, closedTickets]];
     //set a cell range the size of the row data
-    var insertRange = sheet.getRange(startRow, 3, 1, row[0].length)
+    var insertRange = sheet.getRange(startRow, 1, 1, row[0].length)
     //push the data to the new row
     insertRange.setValues(row);
 
