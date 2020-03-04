@@ -1,0 +1,48 @@
+<div class="demo" >
+<style type="text/css"> .demo { margin: 30px ; color : #AAA ; font-family : arial sans-serif ;font-size : 12pt } 
+                            p { color : black ; font-family : arial ; font-size : 11pt } 
+</style>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/themes/base/jquery-ui.css">
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+<p> Start Date: <input type="text" name="StartDate" id="startdatepicker" /> </p>
+<p> End Date:   <input type="text" name="EndDate" id="enddatepicker" /> </p>
+<script>
+    $( "#startdatepicker" ).datepicker({
+      showWeek: true,
+      firstDay: 0,
+     });
+</script>
+<script>
+    $( "#enddatepicker" ).datepicker({
+      showWeek: true,
+      firstDay: 0,
+     });
+</script>
+<script>
+// Pass input dates to server-side submitDates()
+function submitDates(frequency) {
+  var startDate = $("#startdatepicker").val();
+  var endDate = $("#enddatepicker").val();
+
+  google.script.run
+        .withSuccessHandler(
+           // Dates delivered, close dialog
+           function() {
+             google.script.host.close();
+           })
+           // Display failure messages
+         .withFailureHandler(
+           function() {
+             var div = $('<div id="error" class="error">' + msg + '</div>');
+             $(element).after($("#demo"));
+           })
+         .submitDates(startDate,endDate,frequency);
+}
+
+</script>
+<input type="button" value="Daily" onclick="submitDates('daily')" />
+<input type="button" value="Weekly" onclick="submitDates('weekly')" />
+</div>
