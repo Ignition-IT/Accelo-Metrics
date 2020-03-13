@@ -21,7 +21,12 @@ Create a project trigger to create the custom menu when the sheet is opened
 
 ![Menu Trigger](https://github.com/Ignition-IT/Accelo-Metrics/blob/master/menu_trigger.png?raw=true)
 
+---
 
 Accelo API reference: https://api.accelo.com/docs
 
 Google Apps Script reference: https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app
+
+
+
+Created by Ella for Ignition, Inc., a California corporation https://www.ignitionit.net
